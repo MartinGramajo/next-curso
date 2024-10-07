@@ -40,7 +40,17 @@ Nota: solo funciona en modo de desarrollo por estar en Beta.
 
 1. globals.css: es nuestro archivo de estilo globales de la aplicación.
 2. favicon.ico: es el icono que se encuentra en la ventana de nuestro archivo.
-3. layout.tsx: es el root layout es el principal de mi proyecto. Podemos agregar etiquetas de manera globales como pasaba en el caso de nuestro ejemplo con el <h2> hola de nuevo </h2>
+3. layout.tsx: es el root layout es el principal de mi proyecto. Podemos agregar etiquetas de manera globales como pasaba en el caso de nuestro ejemplo con el "hola de nuevo"
 4. page.tsx
 
 - .Next carpeta que no se le da seguimiento pero dependiendo de como este nuestra app ya sea en producción o desarrollo es producto de comandos de construcción. Por esta razón no se modifica la carpeta de forma manual.
+
+### rutas adicionales
+
+creación de paginas adicionales, en la carpeta APP vamos a crear una carpeta con el nombre de nuestra page en el caso del ejemplo utilizamos "about" con el archivo page.tsx este archivo siempre se utiliza para la creaci
+
+Todos los componentes por defecto dentro de la carpeta app son _Server components_ es decir que son generados desde el lado del servidor. En el clase se muestra un ejemplo con código JS, desactiva con la consola el js de la pagina y de igual manera la expresión de js seguía mostrándose esto se debe a la naturaleza del component al ser generado del lado del servidor.
+
+##### Palabras reservadas
+
+Por ejemplo en nuestra app tenemos layout, page, loading, error.
