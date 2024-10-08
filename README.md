@@ -47,10 +47,27 @@ Nota: solo funciona en modo de desarrollo por estar en Beta.
 
 ### rutas adicionales
 
-creación de paginas adicionales, en la carpeta APP vamos a crear una carpeta con el nombre de nuestra page en el caso del ejemplo utilizamos "about" con el archivo page.tsx este archivo siempre se utiliza para la creaci
+creación de paginas adicionales: en la carpeta APP vamos a crear una carpeta con el nombre de nuestra page en el caso del ejemplo utilizamos "about" con el archivo page.tsx este archivo siempre se utiliza para la creación de paginas.
 
-Todos los componentes por defecto dentro de la carpeta app son _Server components_ es decir que son generados desde el lado del servidor. En el clase se muestra un ejemplo con código JS, desactiva con la consola el js de la pagina y de igual manera la expresión de js seguía mostrándose esto se debe a la naturaleza del component al ser generado del lado del servidor.
+Todos los componentes por defecto dentro de la carpeta app son _Server components_ es decir que son generados desde el lado del servidor. En clase se muestra un ejemplo con código JS, se desactiva con la consola el js de la pagina y de igual manera la expresión de js seguía mostrándose esto se debe a la naturaleza del componente ya que al ser generado del lado del servidor, este lo visualiza.
 
 ##### Palabras reservadas
 
 Por ejemplo en nuestra app tenemos layout, page, loading, error.
+
+### Metadata - Metatags
+
+Como mínimo siempre debemos tener 2 meta: title y description.
+Description (actualmente es el mas importante): le dará una breve descripción de la page en la cual estamos parados actualmente.
+Title: indicara el nombre de la page en la cual estamos parado actualmente
+
+Ahora bien el recurso que nos proporciona next para poder agregar meta a las distintas pages es el siguiente:
+
+```js
+" export const metadata: Metadata = {
+title: "Next App",
+description: "Generated with love by Vercel",
+}; "
+```
+
+lo que hace next es verificar si tiene metadata, si tiene utiliza la especifica en la pagina, sino utiliza la del root layout.
