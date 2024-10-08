@@ -71,3 +71,18 @@ description: "Generated with love by Vercel",
 ```
 
 lo que hace next es verificar si tiene metadata, si tiene utiliza la especifica en la pagina, sino utiliza la del root layout.
+
+### Layouts y Layouts anidados
+
+El layout.tsx es un _Higher-Order Component (HOC)_ es un patron de React que permite re utilizar la lógica entre componentes. Básicamente, es una función que toma un componente y retorna un nuevo componente, envolviendo el componente original con funcionalidad adicional.
+
+Lo que coloquemos en nuestro layout.tsx impactara en todas las paginas.
+
+- ejercicio en clase: como podemos colocar el mismo estilo que tenemos en about a contact y pricing pero no home page?
+  Para ello utilizamos la anidación de layouts: es crear un nuevo layout. El cual tenemos que tener en cuenta en que nivel lo vamos a crear, ya que si lo creamos en la carpeta about va a comprender como _children_ es todo el árbol de componente que se desprenda después del layout , en nuestro caso, nuestro children seria page.tsx.
+  Por lo cual si queremos utilizar el layout y que tenga lo mismo estilo tanto contact como pricing podemos crear una nueva carpeta que tenga las 3 pages y adentro el layout para que los comprenda como su children.
+
+Pero ahora surge otro problema: al colocar de esa forma estaremos modificando la ruta por ende para llegar a cada una de la page tendríamos que colocar la palabra "general" (esta palabra es meramente indicativa podemos ponerle cualquier nombre) => "general/about", "general/contact" y "general/pricing"
+
+**como quitamos ese general de la ruta** colocando entre paréntesis el nombre de la carpeta (general)
+esto le indica a next, no quiero que general sea parte de mi url pero que los agrupe a las 3 pages
