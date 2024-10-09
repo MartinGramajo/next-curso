@@ -86,3 +86,10 @@ Pero ahora surge otro problema: al colocar de esa forma estaremos modificando la
 
 **como quitamos ese general de la ruta** colocando entre paréntesis el nombre de la carpeta (general)
 esto le indica a next, no quiero que general sea parte de mi url pero que los agrupe a las 3 pages
+
+### Barra de navegación
+
+- funcionalidad compartida en toda la aplicación tenemos que crear en la raíz del proyecto la carpeta _components_
+- carpeta _components_ contiene todos los componentes siguiendo las reglas de creación de componentes en react con la funcionalidad compartida por ejemplo una barra de navegación. En clase lo que hicimos fue hacer el componente Navbar.tsx
+
+NOTA: si queremos que nuestra pagina haga un full refresh usaremos las etiquetas <a>. Pero Next nos recomienda otra forma de hacer la navegación.
