@@ -93,3 +93,40 @@ esto le indica a next, no quiero que general sea parte de mi url pero que los ag
 - carpeta _components_ contiene todos los componentes siguiendo las reglas de creación de componentes en react con la funcionalidad compartida por ejemplo una barra de navegación. En clase lo que hicimos fue hacer el componente Navbar.tsx
 
 NOTA: si queremos que nuestra pagina haga un full refresh usaremos las etiquetas <a>. Pero Next nos recomienda otra forma de hacer la navegación.
+
+### next/Link
+
+es un componente proporcionado por Next.js que se utiliza para crear enlaces entre diferentes páginas de una aplicación Next.js.
+Es una forma optimizada y eficiente de navegar en una aplicación de React, ya que habilita la precarga automática de las páginas a las que se vincula, lo que mejora el rendimiento y la experiencia del usuario.
+
+#### características de next/link
+
+- Navegación en el lado del cliente
+- Precarga automática
+- Compatibilidad con rutas dinámicas
+
+### @primer/octicons-react
+
+Paquete de iconos que utilizamos en clase.
+Para su instalación:
+npm i @primer/octicons-react
+
+### Server Components - Teoría - ventajas - Async await
+
+1. Por defecto todos son _server component_ a menos que especifiquemos lo contrario.
+
+2. _Evitar Efectos_ useEffect entre otros hooks que disparan acciones del lado del cliente, NO SE PUEDEN USAR EN SERVER COMPONENTS. Si es necesario, especificar "use client"
+
+3._Renderizado estático_ es la opción por defecto en Next, esto mejora el performance y reduce enormemente la cantidad de contenido enviado al cliente.
+
+4._Fetch cache_ Llamadas a Fetch, realizaran un cache de forma forzada por defecto a menos que se especifique lo contrario. Fetch en Next tiene propiedades para revalidar, mantener en cache y nunca mantenerlo en cache.
+
+la idea que todo lo que pueda ser generado por _server component_ lo dejemos de esa forma y unicamente las piezas que realmente necesitemos que sean interactivas le vamos a poner el 'use client'.
+
+_REGLA_: si lo vemos como un árbol, todo va a ser server component, es decir, contenido generado desde el lado del servidor pero ciertas hojas serán use client, en este caso, seria el contenido generado del lado del cliente.
+
+### usePathname - activeLink
+
+es un hook de Next.js que forma parte de los hooks de enrutamiento de next/navigation. Se utiliza para obtener la ruta actual de la aplicación, es decir, la URL que se está mostrando en ese momento.
+
+activeLink es nuestro primer component cuyo contenido es generado del lado del cliente al especificar en su primer linea que se trata de un 'use client'.
