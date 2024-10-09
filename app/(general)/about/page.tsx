@@ -5,7 +5,8 @@ import type { Metadata } from "next";
 
 // este metadata se puede utilizar al inicio o al final.
 export const metadata: Metadata = {
-  title: 'About Title',
+
+  title: 'About Title ' + (new Date()).toString(),
   description: 'About description',
   keywords: ['About keywords', "about", 'information', "..."],
 
