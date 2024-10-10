@@ -130,3 +130,52 @@ _REGLA_: si lo vemos como un árbol, todo va a ser server component, es decir, c
 es un hook de Next.js que forma parte de los hooks de enrutamiento de next/navigation. Se utiliza para obtener la ruta actual de la aplicación, es decir, la URL que se está mostrando en ese momento.
 
 activeLink es nuestro primer component cuyo contenido es generado del lado del cliente al especificar en su primer linea que se trata de un 'use client'.
+
+### Preparar el proyecto para publicarlo
+
+#### Generando la build de producción
+
+Dentro del archivo package.json tenemos una serie de script
+
+```js
+"   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },"
+```
+
+- _BUILD_ Compila la aplicación para producción. Next.js genera una versión optimizada del proyecto, empaquetando todos los recursos, generando páginas estáticas (si es posible), y preparando el código para ser desplegado en producción.
+
+Se ejecuta antes de desplegar la aplicación en un entorno de producción para que esté lista para funcionar eficientemente.
+
+comando ===> npm run build
+
+NOTA: el archivo de build se encuentra en la carpeta .next!
+
+- _START_ Inicia el servidor de Next.js en modo de producción. Utiliza el código compilado durante el proceso de next build, permitiendo que la aplicación funcione optimizada en un entorno real de producción.
+
+Se utiliza una vez que has construido la aplicación y deseas ejecutarla en un servidor en vivo.
+
+comando ===> npm start
+
+#### Prefetch
+
+es una técnica que optimiza la navegación en aplicaciones web. Básicamente, permite que las páginas sean precargadas en segundo plano antes de que el usuario haga clic en un enlace. Esto resulta en tiempos de carga mucho más rápidos cuando el usuario efectivamente navega hacia esas páginas.
+
+Por defecto, Next.js realiza el prefetch automático de los recursos cuando un enlace con la etiqueta Link aparece en la pantalla. El archivo JavaScript necesario para esa página se descarga anticipadamente en segundo plano, mejorando la experiencia del usuario al hacer la transición entre páginas.
+
+```js
+"
+function Home() {
+  return (
+    <div>
+      <h1>Inicio</h1>
+      <Link href="/about" prefetch={false}> {/* Prefetch es opcional */}
+        <a>Ir a About</a>
+      </Link>
+    </div>
+  );
+}"
+```
