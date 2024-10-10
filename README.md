@@ -92,9 +92,9 @@ esto le indica a next, no quiero que general sea parte de mi url pero que los ag
 - funcionalidad compartida en toda la aplicación tenemos que crear en la raíz del proyecto la carpeta _components_
 - carpeta _components_ contiene todos los componentes siguiendo las reglas de creación de componentes en react con la funcionalidad compartida por ejemplo una barra de navegación. En clase lo que hicimos fue hacer el componente Navbar.tsx
 
-NOTA: si queremos que nuestra pagina haga un full refresh usaremos las etiquetas <a>. Pero Next nos recomienda otra forma de hacer la navegación.
+NOTA: si queremos que nuestra pagina haga un full refresh usaremos las etiquetas a. Pero Next nos recomienda otra forma de hacer la navegación.
 
-### next/Link
+### nextLink
 
 es un componente proporcionado por Next.js que se utiliza para crear enlaces entre diferentes páginas de una aplicación Next.js.
 Es una forma optimizada y eficiente de navegar en una aplicación de React, ya que habilita la precarga automática de las páginas a las que se vincula, lo que mejora el rendimiento y la experiencia del usuario.
@@ -186,3 +186,98 @@ Cuando analizamos la estructura del proyecto vimos que teníamos un archivo llam
 En esta clase aprendimos los comandos para el uso/subir el proyecto en github.
 
 ### Desplegando en vercel
+
+Paso y procedimientos para subir un proyecto de github en vercel.
+
+### Docker - Pasos simples para crear la imagen app
+
+1. En la raíz de nuestro proyecto vamos a crear el archivo .dockerignore. Al igual que nuestro gitignore el archivo de docker ignore es para excluir aquellos elementos que no quiero que sean parte de mi imagen.
+
+Archivo que ignoramos en nuestro proyecto :
+
+- Dockerfile
+- .dockerignore
+- node_modules // esto se lo excluye porque los módulos se instalan dependiendo del sistema operativo.
+- npm-debug.log
+- README.md
+- .next
+- .git
+
+2. En la misma raíz del proyecto vamos a crear el archivo dockerfile. En este archivo indicamos las instrucciones especificas para construir nuestra imagen.
+
+_este comando es para hacer una version de node - linux para correr el proyecto_
+FROM node:18-alpine
+
+_este comando es para determinar el directorio donde voy a trabajar, por lo general donde se encuentra el archivo de dockerfile_
+WORKDIR /app
+
+_comando para copiar el package.json_
+COPY package.json /
+
+_comando para instalar todas las dependencias_
+RUN npm install
+
+_comando para copiar todo las carpetas de mi proyecto al workdir con excepcion de lo que ignore_
+COPY . /
+
+_comando para ejecutar el build de producción_
+RUN npm run build
+
+_comando para determinar el puerto con el cual vamos a conectar nuestra imagen_
+EXPOSE 3000
+
+_comando para ejecutar, valga la redundancia, el comando para inicializar mi servidor_
+CMD ["npm", "start"]
+
+3. En la terminal de visual o en docker, parado sobre el proyecto vamos a utilizar el siguiente comando:
+
+docker build -t nextjs-first-steps .
+
+NOTA: ese punto al final sirve para indicar donde va a estar el archivo de dockerfile
+
+4. Ahora, como levantamos o inicializamos esa imagen de docker?
+
+Con el siguiente comando:
+docker container run -p 3000:3000 nextjs-first-steps
+
+NOTA: al igual que con el comando anterior tengo que estar parado sobre la carpeta del proyecto
+
+NOTA2: el puerto 3000 puede ser cualquier numero pero es de suma importancia que choque con el numero de puerto que dimos en las instrucciones.
+
+### Docker - CONSTRUCCIÓN RECOMENDADA
+
+Para realizar la construcción recomendada del dokerFile
+
+1. tenemos que entrar al siguiente enlace
+   [link text](https://nextjs.org/docs/pages/building-your-application/deploying#docker-image)
+
+2. En dicho enlace tenemos que entrar al link que dice clonar nuestro ejemplo (clone our example)
+
+3. Ese enlace nos envia a [link text]https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
+
+En ese enlace tenemos que buscar el archivo _dockerfile_ y copiar el contenido y utilizarlo en el _dockerfile_ de nuestro proyecto.
+
+##### La diferencia es que los comando se van a crear por etapas y al crearse en etapa, Docker puede mantener en cache, los cambios anteriores.
+
+4. En el archivo next.config.js tenemos que buscar el archivo output: 'standalone',
+
+Este output: 'standalone' es recomendado cuando estamos creando el tipo de imagen con la construcción recomendada.
+En caso de omitirlo nos dara un error que dice que el standalone no se puede encontrar.
+
+```js "
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'standalone',
+};
+
+export default nextConfig;
+"
+```
+
+5. Parados sobre nuestro proyecto tenemos que hacer correr el comando de build
+
+docker build -t nombre-de-la-imagen .
+
+6. Comando para levantar la imagen
+
+docker container run -p 3000:3000 nextjs-first-steps
