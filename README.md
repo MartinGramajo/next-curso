@@ -249,11 +249,11 @@ NOTA2: el puerto 3000 puede ser cualquier numero pero es de suma importancia que
 Para realizar la construcción recomendada del dokerFile
 
 1. tenemos que entrar al siguiente enlace
-   [link text](https://nextjs.org/docs/pages/building-your-application/deploying#docker-image)
+   (https://nextjs.org/docs/pages/building-your-application/deploying#docker-image)
 
 2. En dicho enlace tenemos que entrar al link que dice clonar nuestro ejemplo (clone our example)
 
-3. Ese enlace nos envia a [link text]https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
+3. Ese enlace nos envia a https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
 
 En ese enlace tenemos que buscar el archivo _dockerfile_ y copiar el contenido y utilizarlo en el _dockerfile_ de nuestro proyecto.
 
