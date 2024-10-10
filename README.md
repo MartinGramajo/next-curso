@@ -179,3 +179,8 @@ function Home() {
   );
 }"
 ```
+
+### Subir repositorio a github
+
+Cuando analizamos la estructura del proyecto vimos que teníamos un archivo llamado _gitignore_ en ese archivo están todos los elementos del proyecto que no queremos que se suban en nuestro controlador de versiones git.
+En esta clase aprendimos los comandos para el uso/subir el proyecto en github.
